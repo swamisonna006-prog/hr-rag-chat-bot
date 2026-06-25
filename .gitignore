@@ -21,3 +21,16 @@ venv/
 *.swo
 .DS_Store
 .vscode/
+
+# LangChain / LangSmith local tracking and cache
+.langchain/
+.langsmith/
+
+# Local tracing/db files
+langchain.db
+langchain-trace.db
+langchain_tracking.db
+tracking_v2.db
+*.sqlite
+*.sqlite3
+*.db

@@ -81,7 +81,7 @@ def initialize_bot():
         st.stop()
 
     # 2. Split documents into chunks
-    splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=200)
+    splitter = RecursiveCharacterTextSplitter(chunk_size=450, chunk_overlap=200)
     chunks = splitter.split_documents(documents)
 
     # Filter out empty chunks to avoid downstream FAISS indexing failures.
@@ -105,7 +105,7 @@ def initialize_bot():
     llm = ChatGroq(
         model=LLM_MODEL,
         temperature=0.1,
-        max_tokens=512,
+        max_tokens=300,
         groq_api_key=groq_api_key
     )
     
@@ -114,9 +114,7 @@ def initialize_bot():
 
     CONSTRAINTS & GUARDRAILS:
     1. Use ONLY the provided document context to answer the question. Do not assume or make up any information.
-    2. If the answer cannot be found in the provided context, but the question is related to Zyro Dynamics, politely reply: "I cannot find that specific information in the policy documents. Please contact the HR department directly for assistance."
-    3. If the user asks a completely non-company or general knowledge question that is out-of-scope, politely reply: "I am only authorized to answer questions related to Zyro Dynamics HR policies. Please ask a relevant HR-related question."
-
+    2. should be medium token usage
     Context from HR Documents:
     {context}
     """
